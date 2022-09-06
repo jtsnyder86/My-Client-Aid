@@ -1,5 +1,7 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import MyAudioButton from '../MyAudioButton/MyAudioButton';
+import GeneralAudioButton from '../GeneralAudioButton/GeneralAudioButton';
 import {useSelector} from 'react-redux';
 
 function UserPage() {
@@ -7,9 +9,11 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      <h2>Welcome, {user.first_name}!</h2>
+      <p>Your ID is: {user.info}</p>
+      {/* <LogOutButton className="btn" /> */}
+      <GeneralAudioButton className="btn" />
+      <MyAudioButton className="btn" />
     </div>
   );
 }
