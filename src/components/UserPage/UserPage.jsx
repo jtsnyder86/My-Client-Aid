@@ -9,8 +9,8 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   return (
     <div className="container">
-      <h2>Welcome, {user.first_name}!</h2>
-      <p>Your ID is: {user.info}</p>
+      <h2>Welcome, {user.first_name}! {user.admin}</h2>
+      <p>Your key notes: {user.info}</p>
       {/* <LogOutButton className="btn" /> */}
       <GeneralAudioButton className="btn" />
       <MyAudioButton className="btn" />
