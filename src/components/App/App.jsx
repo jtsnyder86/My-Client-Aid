@@ -15,6 +15,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import AdminPage from '../AdminPages/AdminPage';
+import GeneralAudio from '../GeneralAudio/GeneralAudio';
+import ClientList from '../AdminPages/ClientList';
+import EditClients from '../AdminPages/EditClients';
+import AddAudio from '../AdminPages/AddAudio';
+import AudioList from '../AdminPages/AudioList';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -22,10 +27,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
-import GeneralAudio from '../GeneralAudio/GeneralAudio';
-import ClientList from '../AdminPages/ClientList';
-import EditClients from '../AdminPages/EditClients';
-import AddAudio from '../AdminPages/AddAudio';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -69,7 +71,7 @@ function App() {
           <ProtectedRoute
             // logged in shows AdminPage else shows LoginPage
             exact
-            path="/adminClients"
+            path="/clientList"
           >
             <ClientList />
           </ProtectedRoute>
@@ -88,6 +90,14 @@ function App() {
             path="/addAudio"
           >
             <AddAudio />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/audioList"
+          >
+            <AudioList />
           </ProtectedRoute>
           
           <ProtectedRoute

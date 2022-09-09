@@ -16,7 +16,7 @@ function ClientList(props) {
   // }, [dispatch]);
 
   return (
-    <div>
+    <div className='container'>
       <h2>Client List</h2>
     </div>
   );

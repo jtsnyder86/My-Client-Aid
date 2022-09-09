@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 import GeneralAudioButton from '../GeneralAudioButton/GeneralAudioButton';
+import ClientListButton from '../AdminButtons/ClientListButton';
+import AddAudioButton from '../AdminButtons/AddAudioButton';
+import AudioListButton from '../AdminButtons/AudioListButton';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -12,7 +15,7 @@ function AdminPage(props) {
   const [heading, setHeading] = useState('Functional Component');
 
   return (
-    <div>
+    <div className='container'>
       <h2>Welcome, {user.first_name}!</h2>
       <p>Your key notes: {user.info}</p>
       {/* <LogOutButton className="btn" /> */}

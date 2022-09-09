@@ -11,7 +11,7 @@ function AddAudio(props) {
   const [heading, setHeading] = useState('Functional Component');
 
   return (
-    <div>
+    <div className='container'>
       <h2>Add New Audio</h2>
     </div>
   );
