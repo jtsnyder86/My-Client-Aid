@@ -22,6 +22,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import GeneralAudio from '../GeneralAudio/GeneralAudio';
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/audio"
+          >
+            <GeneralAudio />
           </ProtectedRoute>
 
           <Route
