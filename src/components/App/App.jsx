@@ -14,7 +14,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import AdminPage from '../AdminPage/AdminPage';
+import AdminPage from '../AdminPages/AdminPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -23,6 +23,9 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import GeneralAudio from '../GeneralAudio/GeneralAudio';
+import ClientList from '../AdminPages/ClientList';
+import EditClients from '../AdminPages/EditClients';
+import AddAudio from '../AdminPages/AddAudio';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +64,30 @@ function App() {
             path="/admin"
           >
             <AdminPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/adminClients"
+          >
+            <ClientList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/clientEdit"
+          >
+            <EditClients />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/addAudio"
+          >
+            <AddAudio />
           </ProtectedRoute>
           
           <ProtectedRoute
