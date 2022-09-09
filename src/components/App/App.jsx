@@ -27,6 +27,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import ReturnButton from '../ReturnButton/ReturnButton';
 
 
 function App() {
@@ -174,6 +175,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        <ReturnButton />
         <Footer />
       </div>
     </Router>

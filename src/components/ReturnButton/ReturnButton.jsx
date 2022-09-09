@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import './ReturnButton.css'
 
-function ClientListButton(props) {
+function ReturnButton(props) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -10,7 +11,7 @@ function ClientListButton(props) {
         // dispatch({
         //     type: 'FETCH_AUDIO'
         // })
-    history.push('/clientList')
+    history.push('/admin')
 };
 
     return (
@@ -21,9 +22,9 @@ function ClientListButton(props) {
             className={props.className}
             onClick={onClick}
         >
-            Client List
+            Return to Profile
         </button>
     );
 }
 
-export default ClientListButton;
+export default ReturnButton;
