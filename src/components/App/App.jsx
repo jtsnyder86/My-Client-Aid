@@ -14,6 +14,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
+import AdminPage from '../AdminPage/AdminPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -21,11 +22,12 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import GeneralAudio from '../GeneralAudio/GeneralAudio';
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -52,6 +54,15 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+          
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/admin"
+          >
+            <AdminPage />
+          </ProtectedRoute>
+          
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -68,14 +79,25 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/audio"
+          >
+            <GeneralAudio />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
           >
-            {user.id ?
-              // If the user is already logged in, 
+            {user.id  && user.admin !== true ?
+              // If the user is already logged in and not an admin, 
               // redirect to the /user page
               <Redirect to="/user" />
+              : user.admin === true && user.id  ?
+
+              <Redirect to="/admin" />
               :
               // Otherwise, show the login page
               <LoginPage />
