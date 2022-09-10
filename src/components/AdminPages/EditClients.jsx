@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import ReturnButton from '../ReturnButton/ReturnButton';
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -11,9 +13,12 @@ function EditClients(props) {
   const [heading, setHeading] = useState('Functional Component');
 
   return (
+    <>
     <div className='container'>
-      <h2>Edit Client</h2>
+      <h2>Edit Clients</h2>
     </div>
+    <ReturnButton />
+    </>
   );
 }
 

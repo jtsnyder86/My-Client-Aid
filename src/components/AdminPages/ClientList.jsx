@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import ReturnButton from '../ReturnButton/ReturnButton';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -16,9 +17,12 @@ function ClientList(props) {
   // }, [dispatch]);
 
   return (
+    <>
     <div className='container'>
-      <h2>Client List</h2>
+      <h2>Client list</h2>
     </div>
+    <ReturnButton />
+    </>
   );
 }
 

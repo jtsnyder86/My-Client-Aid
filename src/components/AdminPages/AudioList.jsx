@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import ReturnButton from '../ReturnButton/ReturnButton';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function AudioList(props) {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
-  const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Functional Component');
+    // Using hooks we're creating local state for a "heading" variable with
+    // a default value of 'Functional Component'
+    const store = useSelector((store) => store.audio);
+    const [heading, setHeading] = useState('Functional Component');
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  return (
-    <div className='container'>
-      <h2>All audio</h2>
-    </div>
-  );
+    useEffect(() => {
+        dispatch({ type: 'FETCH_AUDIO' });
+    }, []);
+
+    return (
+        <>
+            <div className='container'>
+                <h2>All audio</h2>
+                {store.map(audio => {
+                    return (
+                        <>
+                            <table>
+                                <tbody>
+                                    <tr key={audio.id}>
+                                        <td>{audio.description}</td>
+                                        <td><button onClick={() => history.push('/audio')}>Playback</button></td>
+                                        <td><button>Edit</button></td>
+                                        <td><button>Delete</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </>
+                    )
+                })}
+            </div>
+            <ReturnButton />
+        </>
+    );
 }
 
 export default AudioList;
