@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ReturnButton from '../ReturnButton/ReturnButton';
 
 
@@ -14,6 +15,7 @@ function AddAudio(props) {
     const [link, setLink] = useState('');
     const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const addAudio = (event) => {
         event.preventDefault();
@@ -26,7 +28,8 @@ function AddAudio(props) {
                 link: link,
             },
         });
-    }; // end registerUser
+        history.push('/admin')
+    }; // end addAudio
 
     return (
         <form className="formPanel" onSubmit={addAudio}>
@@ -69,6 +72,7 @@ function AddAudio(props) {
                         value={general}
                         onChange={(event) => setGeneral(event.target.value)}
                         required>
+                        <option value='null'></option>
                         <option value='true'>Yes</option>
                         <option value='false'>No</option>
                     </select>

@@ -13,8 +13,21 @@ function* fetchAudio() {
 
 }
 
+function* addAudio(action) {
+    // add audio to the DB
+    try {
+        const audio = yield axios.post('/api/audio', action.payload);
+        console.log('Added audio file:', audio.data);
+        yield put({ type: 'SET_AUDIO', payload: audio.data });
+    } catch {
+        console.log('add saga error');
+    }
+
+}
+
 function* audioSaga() {
-    yield takeEvery('FETCH_AUDIO', fetchAudio)
+    yield takeEvery('FETCH_AUDIO', fetchAudio),
+    yield takeEvery('ADD_AUDIO', addAudio)
 }
 
 export default audioSaga

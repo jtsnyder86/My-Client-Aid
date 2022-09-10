@@ -23,6 +23,19 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  console.log(req.body);
+  const query = `INSERT INTO "audio" ("description", "link", "general")
+  VALUES ($1, $2, $3);`;
+
+  const toAdd = req.body
+  pool.query(query, [req.body.description, req.body.link, req.body.general])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: adding audio', err);
+      res.sendStatus(500)
+    })
 });
 
 module.exports = router;
