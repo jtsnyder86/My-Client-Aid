@@ -28,6 +28,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import ReturnButton from '../ReturnButton/ReturnButton';
+import EditAudio from '../AdminPages/EditAudio';
 
 
 function App() {
@@ -100,6 +101,14 @@ function App() {
           >
             <AudioList />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/editAudio"
+          >
+            <EditAudio />
+          </ProtectedRoute>
           
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -129,11 +138,11 @@ function App() {
             exact
             path="/login"
           >
-            {user.id  && user.admin !== true ?
+            {user.id  && !user.admin ?
               // If the user is already logged in and not an admin, 
               // redirect to the /user page
               <Redirect to="/user" />
-              : user.admin === true && user.id  ?
+              : user.admin && user.id  ?
 
               <Redirect to="/admin" />
               :

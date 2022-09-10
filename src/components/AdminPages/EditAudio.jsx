@@ -7,7 +7,7 @@ import ReturnButton from '../ReturnButton/ReturnButton';
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function AddAudio(props) {
+function EditAudio(props) {
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
     const [description, setDescription] = useState('');
@@ -17,7 +17,7 @@ function AddAudio(props) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const addAudio = (event) => {
+    const editAudio = (event) => {
         event.preventDefault();
 
         dispatch({
@@ -33,8 +33,8 @@ function AddAudio(props) {
 
     return (
         <>
-            <form className="formPanel" onSubmit={addAudio}>
-                <h2>Add audio</h2>
+            <form className="formPanel" onSubmit={editAudio}>
+                <h2>Edit audio details</h2>
                 {/* {errors.registrationMessage && (
                 <h3 className="alert" role="alert">
                     {errors.registrationMessage}
@@ -88,4 +88,4 @@ function AddAudio(props) {
     );
 }
 
-export default AddAudio;
+export default EditAudio;
