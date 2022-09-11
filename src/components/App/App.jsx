@@ -105,7 +105,7 @@ function App() {
           <ProtectedRoute
             // logged in shows AdminPage else shows LoginPage
             exact
-            path="/editAudio"
+            path="/editAudio/:id"
           >
             <EditAudio />
           </ProtectedRoute>

@@ -30,7 +30,7 @@ function AudioList(props) {
                                     <tr key={audio.id}>
                                         <td>{audio.description}</td>
                                         <td><button onClick={() => history.push('/audio')}>Playback</button></td>
-                                        <td><button onClick={() => history.push('/editAudio')}>Edit</button></td>
+                                        <td><button onClick={() => history.push(`/editAudio/${audio.id}`)}>Edit</button></td>
                                         <td><button>Delete</button></td>
                                     </tr>
                                 </tbody>

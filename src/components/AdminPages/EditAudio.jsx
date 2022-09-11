@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import ReturnButton from '../ReturnButton/ReturnButton';
 
 
@@ -16,19 +16,21 @@ function EditAudio(props) {
     // const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
     const history = useHistory();
+    const params = useParams();
 
     const editAudio = (event) => {
         event.preventDefault();
 
         dispatch({
-            type: 'ADD_AUDIO',
+            type: 'EDIT_AUDIO',
             payload: {
+                id: params.id,
                 description: description,
                 general: general,
                 link: link,
             },
         });
-        history.push('/admin')
+        history.push('/audioList')
     }; // end addAudio
 
     return (
@@ -47,7 +49,6 @@ function EditAudio(props) {
                             type="text"
                             name="description"
                             value={description}
-                            required
                             onChange={(event) => setDescription(event.target.value)}
                         />
                     </label>
@@ -59,7 +60,6 @@ function EditAudio(props) {
                             type="text"
                             name="link"
                             value={link}
-                            required
                             onChange={(event) => setLink(event.target.value)}
                         />
                     </label>
@@ -71,8 +71,7 @@ function EditAudio(props) {
                             name='general'
                             id='general'
                             value={general}
-                            onChange={(event) => setGeneral(event.target.value)}
-                            required>
+                            onChange={(event) => setGeneral(event.target.value)}>
                             <option value='null'></option>
                             <option value='true'>Yes</option>
                             <option value='false'>No</option>

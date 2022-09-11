@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
   VALUES ($1, $2, $3);`;
 
   const toAdd = req.body
-  pool.query(query, [req.body.description, req.body.link, req.body.general])
+  pool.query(query, [toAdd.description, toAdd.link, toAdd.general])
     .then(result => {
       res.send(result.rows);
     })
@@ -41,9 +41,24 @@ router.post('/', (req, res) => {
 /**
  * Put route template
  */
- router.put('/', (req, res) => {
+router.put('/', (req, res) => {
   // PUT route code here
+  console.log(req.body);
+  const query = `
+    UPDATE "audio" 
+    SET "description"=$1, "link"=$2, "general"=$3    
+    WHERE id = $4;
+    `;
 
+  const toAdd = req.body
+  pool.query(query, [toAdd.description, toAdd.link, toAdd.general, toAdd.id])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: adding audio', err);
+      res.sendStatus(500)
+    })
 });
 
 module.exports = router;
