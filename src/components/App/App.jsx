@@ -14,7 +14,12 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import AdminPage from '../AdminPage/AdminPage';
+import AdminPage from '../AdminPages/AdminPage';
+import GeneralAudio from '../GeneralAudio/GeneralAudio';
+import ClientList from '../AdminPages/ClientList';
+import EditClients from '../AdminPages/EditClients';
+import AddAudio from '../AdminPages/AddAudio';
+import AudioList from '../AdminPages/AudioList';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -22,7 +27,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
-import GeneralAudio from '../GeneralAudio/GeneralAudio';
+import ReturnButton from '../ReturnButton/ReturnButton';
+import EditAudio from '../AdminPages/EditAudio';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +69,46 @@ function App() {
           >
             <AdminPage />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/clientList"
+          >
+            <ClientList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/clientEdit"
+          >
+            <EditClients />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/addAudio"
+          >
+            <AddAudio />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/audioList"
+          >
+            <AudioList />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AdminPage else shows LoginPage
+            exact
+            path="/editAudio/:id"
+          >
+            <EditAudio />
+          </ProtectedRoute>
           
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -91,11 +138,11 @@ function App() {
             exact
             path="/login"
           >
-            {user.id  && user.admin !== true ?
+            {user.id  && !user.admin ?
               // If the user is already logged in and not an admin, 
               // redirect to the /user page
               <Redirect to="/user" />
-              : user.admin === true && user.id  ?
+              : user.admin && user.id  ?
 
               <Redirect to="/admin" />
               :
@@ -137,6 +184,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
+        {/* <ReturnButton /> */}
         <Footer />
       </div>
     </Router>
