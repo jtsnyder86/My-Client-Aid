@@ -1,4 +1,4 @@
-import { put,takeEvery } from "redux-saga/effects";
+import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 function* fetchAudio() {
@@ -26,7 +26,7 @@ function* addAudio(action) {
 }
 
 function* editAudio(action) {
-    // add audio to the DB
+    // edit audio in the DB
     try {
         const audio = yield axios.put('/api/audio', action.payload);
         console.log('Edited audio file:', audio.data);
@@ -37,10 +37,24 @@ function* editAudio(action) {
 
 }
 
+function* deleteAudio(action) {
+    console.log('delete', action.payload);
+    // delete audio from the DB
+    try {
+        yield axios.delete(`/api/audio/${action.payload}`);
+        console.log('Deleting audio file:', action.payload);
+        yield put({ type: 'FETCH_AUDIO' });
+    } catch {
+        console.log('delete audio saga error');
+    }
+
+}
+
 function* audioSaga() {
     yield takeEvery('FETCH_AUDIO', fetchAudio),
-    yield takeEvery('ADD_AUDIO', addAudio),
-    yield takeEvery('EDIT_AUDIO', editAudio)
+        yield takeEvery('ADD_AUDIO', addAudio),
+        yield takeEvery('EDIT_AUDIO', editAudio),
+        yield takeEvery('DELETE_AUDIO', deleteAudio)
 }
 
 export default audioSaga
