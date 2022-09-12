@@ -25,8 +25,8 @@ function GeneralAudio(props) {
                 return (
                     <>
                         <p>{audio.description}</p>
-
-                        <iframe width="75%" height="100" scrolling="no" frameborder="no" src={audio.link}></iframe>
+                        {/* <audio controls><source src="/Users/joshuasnyder/Desktop/Prime-academy/Tier-3/solo-project/snyder-solo-project/public/test/example.mp3" type="audio/mpeg"/></audio> */}
+                        {/* <iframe width="75%" height="100" scrolling="no" frameborder="no" src={audio.link}></iframe> */}
                         <audio controls key={audio.id}>
 
                             <source src={audio.link} />
