@@ -56,7 +56,29 @@ router.put('/', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: adding audio', err);
+      console.log('ERROR: editing audio', err);
+      res.sendStatus(500)
+    })
+});
+
+/**
+ * Delete route template
+ */
+ router.delete('/:id', (req, res) => {
+  // Delete route code here
+  console.log(req.body);
+  const query = `
+    DELETE from "audio"     
+    WHERE id = $1;
+    `;
+
+  // const toAdd = req.body
+  pool.query(query, [req.params.id])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: deleting audio', err);
       res.sendStatus(500)
     })
 });

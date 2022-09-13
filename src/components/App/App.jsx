@@ -61,13 +61,17 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          
+
           <ProtectedRoute
             // logged in shows AdminPage else shows LoginPage
             exact
             path="/admin"
           >
-            <AdminPage />
+            {user.admin ?
+              <AdminPage />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -75,7 +79,11 @@ function App() {
             exact
             path="/clientList"
           >
-            <ClientList />
+            {user.admin ?
+              <ClientList />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -83,7 +91,11 @@ function App() {
             exact
             path="/clientEdit"
           >
-            <EditClients />
+            {user.admin ?
+              <EditClients />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -91,7 +103,11 @@ function App() {
             exact
             path="/addAudio"
           >
-            <AddAudio />
+            {user.admin ?
+              <AddAudio />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -99,7 +115,11 @@ function App() {
             exact
             path="/audioList"
           >
-            <AudioList />
+            {user.admin ?
+              <AudioList />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -107,15 +127,23 @@ function App() {
             exact
             path="/editAudio/:id"
           >
-            <EditAudio />
+            {user.admin ?
+              <EditAudio />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
-          
+
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
           >
-            <UserPage />
+            {user.admin ?
+              <AdminPage />
+              :
+              <UserPage />
+            }
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -138,16 +166,16 @@ function App() {
             exact
             path="/login"
           >
-            {user.id  && !user.admin ?
+            {user.id && !user.admin ?
               // If the user is already logged in and not an admin, 
               // redirect to the /user page
               <Redirect to="/user" />
-              : user.admin && user.id  ?
+              : user.admin && user.id ?
 
-              <Redirect to="/admin" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
+                <Redirect to="/admin" />
+                :
+                // Otherwise, show the login page
+                <LoginPage />
             }
           </Route>
 
