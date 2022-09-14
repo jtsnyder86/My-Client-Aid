@@ -52,9 +52,9 @@ function* deleteAudio(action) {
 
 function* audioSaga() {
     yield takeEvery('FETCH_AUDIO', fetchAudio),
-        yield takeEvery('ADD_AUDIO', addAudio),
-        yield takeEvery('EDIT_AUDIO', editAudio),
-        yield takeEvery('DELETE_AUDIO', deleteAudio)
+    yield takeEvery('ADD_AUDIO', addAudio),
+    yield takeEvery('EDIT_AUDIO', editAudio),
+    yield takeEvery('DELETE_AUDIO', deleteAudio)
 }
 
 export default audioSaga
