@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ReturnButton from '../ReturnButton/ReturnButton';
 
 // Basic functional component structure for React with default state
@@ -10,7 +11,8 @@ function ClientList(props) {
   // a default value of 'Functional Component'
   const clients = useSelector((store) => store.client);
   const [heading, setHeading] = useState('Functional Component');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_CLIENTS' });
@@ -26,10 +28,10 @@ function ClientList(props) {
               <table>
                 <tbody>
                   <tr key={user.id}>
-                    <td>{user.first_name}</td>
-                    <td><button onClick={() => history.push('/user')}>Playback</button></td>
+                    <td>{user.first_name} {user.last_name}</td>                    
                     <td><button onClick={() => history.push(`/editClient/${user.id}`)}>Edit</button></td>
                     <td><button onClick={() => handleDelete(user.id)}>Delete</button></td>
+                    {!user.approved && <td><button onClick={() => dispatch({type: 'APPROVE'})}>Approve</button></td>}
                   </tr>
                 </tbody>
               </table>
