@@ -41,7 +41,7 @@ function* deleteClient(action) {
     console.log('delete', action.payload);
     // delete client from the DB
     try {
-        yield axios.delete(`/api/user/${action.payload}`);
+        yield axios.delete(`/api/user/client/${action.payload}`);
         console.log('Deleting CLIENT:', action.payload);
         yield put({ type: 'FETCH_CLIENTS' });
     } catch {

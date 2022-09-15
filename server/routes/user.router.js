@@ -26,6 +26,25 @@ router.get('/clients', (req, res) => {
   })
 });
 
+router.delete('/client/:id', (req, res) => {
+  // Delete route code here
+  console.log(req.body);
+  const query = `
+    DELETE from "user"     
+    WHERE id = $1;
+    `;
+
+  // const toAdd = req.body
+  pool.query(query, [req.params.id])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: deleting client', err);
+      res.sendStatus(500)
+    })
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
