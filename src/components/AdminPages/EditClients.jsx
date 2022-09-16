@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import ReturnButton from '../ReturnButton/ReturnButton';
 
 
@@ -11,11 +12,12 @@ function EditClients(props) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Functional Component');
+  const params = useParams();
 
   return (
     <>
     <div className='container'>
-      <h2>Edit Clients</h2>
+      <h2>Edit {params.id}</h2>
     </div>
     <ReturnButton />
     </>

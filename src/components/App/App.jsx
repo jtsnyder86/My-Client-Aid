@@ -89,7 +89,7 @@ function App() {
           <ProtectedRoute
             // logged in shows AdminPage else shows LoginPage
             exact
-            path="/clientEdit"
+            path="/editClient/:id"
           >
             {user.admin ?
               <EditClients />

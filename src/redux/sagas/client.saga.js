@@ -13,17 +13,17 @@ function* fetchClients() {
 
 }
 
-// function* addAudio(action) {
-//     // add audio to the DB
-//     try {
-//         const audio = yield axios.post('/api/audio', action.payload);
-//         console.log('Added audio file:', audio.data);
-//         yield put({ type: 'SET_AUDIO', payload: audio.data });
-//     } catch {
-//         console.log('add saga error');
-//     }
+function* approve(action) {
+    // Approve client
+    try {
+        yield axios.put(`/api/user/approve/${action.payload}`);
+        console.log('Approved client', action.payload);
+        yield put({ type: 'FETCH_CLIENTS'});
+    } catch {
+        console.log('approve saga error');
+    }
 
-// }
+}
 
 function* editClient(action) {
     // edit client user in the DB
@@ -41,7 +41,7 @@ function* deleteClient(action) {
     console.log('delete', action.payload);
     // delete client from the DB
     try {
-        yield axios.delete(`/api/user/${action.payload}`);
+        yield axios.delete(`/api/user/client/${action.payload}`);
         console.log('Deleting CLIENT:', action.payload);
         yield put({ type: 'FETCH_CLIENTS' });
     } catch {
@@ -52,7 +52,7 @@ function* deleteClient(action) {
 
 function* clientSaga() {
     yield takeEvery('FETCH_CLIENTS', fetchClients),
-    // yield takeEvery('ADD_CLIENT', addClients),
+    yield takeEvery('APPROVE', approve),
     yield takeEvery('EDIT_CLIENT', editClient),
     yield takeEvery('DELETE_CLIENT', deleteClient)
 }

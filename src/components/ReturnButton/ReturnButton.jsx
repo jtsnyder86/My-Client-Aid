@@ -11,7 +11,7 @@ function ReturnButton(props) {
         // dispatch({
         //     type: 'FETCH_AUDIO'
         // })
-    history.push('/admin')
+    history.push('/home')
 };
 
     return (
