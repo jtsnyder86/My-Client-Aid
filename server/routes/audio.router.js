@@ -1,11 +1,14 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const query = `SELECT * FROM "audio" ORDER BY "description" ASC`;
   pool.query(query)
@@ -21,7 +24,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log(req.body);
   const query = `INSERT INTO "audio" ("description", "link", "general")
@@ -41,7 +44,7 @@ router.post('/', (req, res) => {
 /**
  * Put route template
  */
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
   // PUT route code here
   console.log(req.body);
   const query = `
@@ -64,7 +67,7 @@ router.put('/', (req, res) => {
 /**
  * Delete route template
  */
- router.delete('/:id', (req, res) => {
+ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // Delete route code here
   console.log(req.body);
   const query = `

@@ -20,7 +20,7 @@ function AudioList(props) {
 
     const handleDelete = (id) => {
         console.log(id);
-        dispatch({ 
+        dispatch({
             type: 'DELETE_AUDIO',
             payload: id
         });
@@ -39,7 +39,7 @@ function AudioList(props) {
                                         <td>{audio.description}</td>
                                         <td><button onClick={() => history.push('/audio')}>Playback</button></td>
                                         <td><button onClick={() => history.push(`/editAudio/${audio.id}`)}>Edit</button></td>
-                                        <td><button onClick={() => handleDelete (audio.id)}>Delete</button></td>
+                                        <td><button onClick={() => handleDelete(audio.id)}>Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
