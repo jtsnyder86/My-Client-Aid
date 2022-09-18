@@ -18,6 +18,15 @@ function ClientList(props) {
     dispatch({ type: 'FETCH_CLIENTS' });
   }, []);
 
+  const handleEdit = (user) => {
+    console.log(user.id);
+    dispatch({
+      type: 'SET_EDIT',
+      payload: user,
+    })
+    history.push(`/editClient/${user.id}`)
+  }
+
   const handleDelete = (id) => {
     console.log(id);
     dispatch({
@@ -37,9 +46,9 @@ function ClientList(props) {
                 <tbody>
                   <tr key={user.id}>
                     {!user.admin && <> <td>{user.first_name} {user.last_name}</td>
-                    <td>{user.info}</td>
-                    <td><button onClick={() => history.push(`/editClient/${user.id}`)}>Edit</button></td>
-                    <td><button onClick={() => handleDelete(user.id)}>Delete</button></td></>}
+                      <td>{user.info}</td>
+                      <td><button onClick={() => handleEdit(user)}>Edit</button></td>
+                      <td><button onClick={() => handleDelete(user.id)}>Delete</button></td></>}
                     {!user.approved && <td><button onClick={() => dispatch({ type: 'APPROVE', payload: user.id })}>Approve</button></td>}
                   </tr>
                 </tbody>
