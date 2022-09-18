@@ -60,6 +60,22 @@ router.put('/approve/:id', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.put('/client/:id', rejectUnauthenticated, (req, res) => {
+  console.log(req.body);
+  const query = `
+    UPDATE "user"
+    SET "first_name"=$1, "last_name"=$2, "info"=$3
+    WHERE "id" = $4`;
+  pool.query(query,[req.body.first_name, req.body.last_name, req.body.info, req.params.id])
+  .then(result =>{
+    res.send(result.rows);
+  })
+  .catch(err => {
+    console.log('Error in getting client list', err);
+    res.sendStatus(500)
+  })
+});
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
