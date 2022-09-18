@@ -12,7 +12,8 @@ function EditClients(props) {
   const [description, setDescription] = useState('');
   const [general, setGeneral] = useState('');
   const [link, setLink] = useState('');
-  const store = useSelector((store) => store.audio);
+  const audio = useSelector((store) => store.audio);
+  const edit = useSelector((store) => store.edit);
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
@@ -69,17 +70,15 @@ function EditClients(props) {
         </div>
         <div>
           <ul>Choose audio:
-            {store.map(audio => {
+            {audio.map(file => {
               return (
-                <li style={{listStyleType: "none" }} key={audio.id}>
-                  <label htmlFor="general">
+                <li style={{listStyleType: "none" }} key={file.id}>
+                  <label>
                     <input                      
                       type='checkbox'
-                      name='general'
-                      id='general'
-                      value={audio.description}
+                      value={file.description}
                       onChange={(event) => setGeneral(event.target.value)} />
-                    {audio.description}
+                    {file.description}
                   </label>
                 </li>
               )
