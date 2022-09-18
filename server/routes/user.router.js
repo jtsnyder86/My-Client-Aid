@@ -14,7 +14,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
-router.get('/clients', (req, res) => {
+router.get('/clients', rejectUnauthenticated, (req, res) => {
   const query = 'SELECT * FROM "user" ORDER BY "first_name" ASC';
   pool.query(query)
   .then(result =>{
@@ -26,7 +26,7 @@ router.get('/clients', (req, res) => {
   })
 });
 
-router.delete('/client/:id', (req, res) => {
+router.delete('/client/:id', rejectUnauthenticated, (req, res) => {
   // Delete route code here
   console.log(req.body);
   const query = `
@@ -45,7 +45,7 @@ router.delete('/client/:id', (req, res) => {
     })
 });
 
-router.put('/approve/:id', (req, res) => {
+router.put('/approve/:id', rejectUnauthenticated, (req, res) => {
   const query = `
     UPDATE "user"
     SET "approved"=true

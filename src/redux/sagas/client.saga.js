@@ -28,7 +28,7 @@ function* approve(action) {
 function* editClient(action) {
     // edit client user in the DB
     try {
-        yield axios.put('/api/user/clients', action.payload);
+        yield axios.put('/api/user/client', action.payload);
         console.log('Edited CLIENT file:', action.payload);
         yield put({ type: 'SET_CLIENTS', payload: action.payload });
     } catch {

@@ -31,7 +31,7 @@ function EditAudio(props) {
             },
         });
         history.push('/audioList')
-    }; // end addAudio
+    }; // end editAudio
 
     return (
         <>
