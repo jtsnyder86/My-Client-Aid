@@ -14,4 +14,4 @@ const edit = (state = {}, action) => {
     return state;
 }
 
-export default edit
+export default edit;
