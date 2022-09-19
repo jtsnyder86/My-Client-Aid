@@ -22,6 +22,7 @@ function EditClients(props) {
   const [audioSelection, setAudioSelection] = useState('');
 
   useEffect(() => {
+    // dispatch({type: 'SET_EDIT'});
     dispatch({ type: 'FETCH_AUDIO' });
   }, []);
 
@@ -29,15 +30,16 @@ function EditClients(props) {
 
   const editClient = (event) => {
     event.preventDefault();
-    console.log(first, info);
+    console.log(first, info, audioSelection);
 
     dispatch({
       type: 'EDIT_CLIENT',
       payload: {
-        id: params.id,
+        id: edit.id,
         first_name: first,
         last_name: last,
         info: info,
+        audio_id: audioSelection
       },
     });
     history.push('/clientList')
@@ -93,7 +95,8 @@ function EditClients(props) {
                   <label>
                     <input                      
                       type='checkbox'
-                      value={file.description}
+                      value={file.id}
+                      id={file.id}
                       onChange={(event) => setAudioSelection(event.target.value)} />
                     {file.description}
                   </label>
