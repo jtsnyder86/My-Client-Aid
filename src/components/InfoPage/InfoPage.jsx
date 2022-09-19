@@ -8,7 +8,8 @@ import React from 'react';
 function InfoPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      <p>Most challenging feature: file upload!</p>
+      <p>Future challenge: upload the file to a cloud database!</p>
     </div>
   );
 }

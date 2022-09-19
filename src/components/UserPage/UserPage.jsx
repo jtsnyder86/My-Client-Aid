@@ -13,7 +13,8 @@ function UserPage() {
       <p>Your key notes: {user.info}</p>
       {/* <LogOutButton className="btn" /> */}
       {user.approved && 
-      <><GeneralAudioButton className="btn" />
+      <>
+      <GeneralAudioButton className="btn" />
       <MyAudioButton className="btn" />
       </>}
     </div>

@@ -13,6 +13,18 @@ function* fetchAudio() {
 
 }
 
+function* fetchMyAudio() {
+    // get all audio from the DB
+    try {
+        const audio = yield axios.get('/api/audio/myAudio');
+        console.log('get all:', audio.data);
+        yield put({ type: 'SET_AUDIO', payload: audio.data });
+    } catch {
+        console.log('fetch saga error');
+    }
+
+}
+
 function* addAudio(action) {
     // add audio to the DB
     try {
@@ -52,9 +64,11 @@ function* deleteAudio(action) {
 
 function* audioSaga() {
     yield takeEvery('FETCH_AUDIO', fetchAudio),
+    yield takeEvery('FETCH_MY_AUDIO', fetchMyAudio),
     yield takeEvery('ADD_AUDIO', addAudio),
     yield takeEvery('EDIT_AUDIO', editAudio),
     yield takeEvery('DELETE_AUDIO', deleteAudio)
+
 }
 
 export default audioSaga

@@ -22,6 +22,29 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 /**
+ * GET route template
+ */
+ router.get('/myAudio', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+  const query = `
+  SELECT "audio".description, "audio".link FROM "audio"
+  JOIN "user_audio"
+  ON "audio".id = "user_audio".audio_id
+  JOIN "user"
+  ON "user".id = "user_audio".user_id
+  WHERE "user".id = $1;
+  `;
+  pool.query(query, req.params.id)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all audio', err);
+      res.sendStatus(500)
+    })
+});
+
+/**
  * POST route template
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
