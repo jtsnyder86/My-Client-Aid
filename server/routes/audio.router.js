@@ -49,7 +49,7 @@ router.post('/uploaded', rejectUnauthenticated, (req, res) =>{
 
   const file = req.files.file;
 
-  file.mv(`/upload/${file.name}`, err => {
+  file.mv(`/Users/joshuasnyder/Desktop/Prime-academy/Tier-3/solo-project/snyder-solo-project/public/upload/${file.name}`, err => {
       if(err) {
           console.error(err);
           return res.sendStatus(500)

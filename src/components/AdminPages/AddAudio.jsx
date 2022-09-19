@@ -24,7 +24,7 @@ function AddAudio(props) {
         setFileName(e.target.files[0].name)
     }
 
-    const addAudio = (event) => {
+    const addAudio = async (event) => {
         event.preventDefault();
 
         dispatch({
@@ -40,7 +40,7 @@ function AddAudio(props) {
         formData.append('file', file);
         // formData.append("file", fileName);
 
-        axios.post('/server/audio/uploaded', formData, {
+        axios.post('/api/audio/uploaded', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
