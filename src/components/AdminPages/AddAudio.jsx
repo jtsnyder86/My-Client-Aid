@@ -50,7 +50,9 @@ function AddAudio(props) {
                 const { fileName, filePath } = res.data;
                 setUploadedFile({ fileName, filePath });
             })
-            .catch((err) => alert("File Upload Error", err));
+            .catch((err) => {
+                // alert("File Upload Error", err)
+            });
 
         history.push('/admin')
     }; // end addAudio

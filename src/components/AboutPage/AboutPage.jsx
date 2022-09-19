@@ -8,9 +8,26 @@ import React from 'react';
 function AboutPage() {
   return (
     <div className="container">
-      <div>
-        <p>This about page is for anyone to read!</p>
-      </div>
+      <p>Technolgies Used:
+          <ul>
+            <li>React</li>
+            <li>Redux</li>
+            <li>Redux-Saga</li>
+            <li>PostgreSQL</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>Express-Fileupload</li>
+            <li>CSS</li>
+          </ul>
+        </p>
+        <p>
+          Thank you to:
+          <ul>
+            <li>The Mitchison Cohort</li>
+            <li>Dane and Kris</li>
+            <li>Friends and Family</li>
+          </ul>
+        </p>
     </div>
   );
 }
