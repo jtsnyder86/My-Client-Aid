@@ -3,7 +3,8 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import audio from './audio.reducer';
 import client from './client.reducer';
-import edit from './edit.reducer'
+import edit from './edit.reducer';
+import audioEdit from './audioEdit.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   audio, // will gather all audio for general use
   client,
   edit,
+  audioEdit,
 });
 
 export default rootReducer;

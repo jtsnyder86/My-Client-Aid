@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
@@ -15,6 +16,8 @@ const audioRouter = require('./routes/audio.router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);

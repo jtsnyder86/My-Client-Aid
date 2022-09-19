@@ -41,6 +41,23 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.post('/uploaded', rejectUnauthenticated, (req, res) =>{
+  console.log(req.body);
+  if(req.files === null){
+      return res.sendStatus(400).json({ msg: 'no file uploaded'});
+  }
+
+  const file = req.files.file;
+
+  file.mv(`/Users/joshuasnyder/Desktop/Prime-academy/Tier-3/solo-project/snyder-solo-project/public/upload/${file.name}`, err => {
+      if(err) {
+          console.error(err);
+          return res.sendStatus(500)
+      }
+      res.json({fileName: file.name, filePath: `/upload/${file.name}`});
+  });
+});
+
 /**
  * Put route template
  */

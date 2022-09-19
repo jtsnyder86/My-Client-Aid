@@ -10,13 +10,13 @@ import ReturnButton from '../ReturnButton/ReturnButton';
 function EditAudio(props) {
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
-    const [description, setDescription] = useState('');
-    const [general, setGeneral] = useState('');
-    const [link, setLink] = useState('');
-    // const errors = useSelector((store) => store.errors);
+    
+    const audio = useSelector((store) => store.audioEdit);
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
+    const [description, setDescription] = useState(audio.description);
+    const [link, setLink] = useState(audio.link);
 
     const editAudio = (event) => {
         event.preventDefault();
@@ -24,9 +24,8 @@ function EditAudio(props) {
         dispatch({
             type: 'EDIT_AUDIO',
             payload: {
-                id: params.id,
+                id: audio.id,
                 description: description,
-                general: general,
                 link: link,
             },
         });

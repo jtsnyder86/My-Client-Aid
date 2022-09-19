@@ -18,6 +18,15 @@ function AudioList(props) {
         dispatch({ type: 'FETCH_AUDIO' });
     }, []);
 
+    const handleEdit = (audio) => {
+        console.log(audio.id);
+        dispatch({
+          type: 'SET_AUDIO_EDIT',
+          payload: audio,
+        })
+        history.push(`/editAudio/${audio.id}`)
+      }
+
     const handleDelete = (id) => {
         console.log(id);
         dispatch({
@@ -38,7 +47,7 @@ function AudioList(props) {
                                     <tr key={audio.id}>
                                         <td>{audio.description}</td>
                                         <td><button onClick={() => history.push('/audio')}>Playback</button></td>
-                                        <td><button onClick={() => history.push(`/editAudio/${audio.id}`)}>Edit</button></td>
+                                        <td><button onClick={() => handleEdit(audio)}>Edit</button></td>
                                         <td><button onClick={() => handleDelete(audio.id)}>Delete</button></td>
                                     </tr>
                                 </tbody>
