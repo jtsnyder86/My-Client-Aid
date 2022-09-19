@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ReturnButton from '../ReturnButton/ReturnButton';
+import axios from 'axios';
 
 
 // Basic functional component structure for React with default state
@@ -11,11 +12,17 @@ function AddAudio(props) {
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
     const [description, setDescription] = useState('');
-    const [general, setGeneral] = useState('');
-    const [link, setLink] = useState('');
+    const [file, setFile] = useState('');
+    const [fileName, setFileName] = useState('');
+    // const [link, setLink] = useState('');
     // const errors = useSelector((store) => store.errors);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const onChange = (e) => {
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name)
+    }
 
     const addAudio = (event) => {
         event.preventDefault();
@@ -24,10 +31,27 @@ function AddAudio(props) {
             type: 'ADD_AUDIO',
             payload: {
                 description: description,
-                general: general,
-                link: link,
+                // file: file,
+                link: `/upload/${fileName}`,
             },
         });
+
+        const formData = new FormData();
+        formData.append('file', file);
+        // formData.append("file", fileName);
+
+        axios.post('/server/audio/uploaded', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then((res) => {
+                alert("File Upload success");
+                const { fileName, filePath } = res.data;
+                setUploadedFile({ fileName, filePath });
+            })
+            .catch((err) => alert("File Upload Error", err));
+
         history.push('/admin')
     }; // end addAudio
 
@@ -53,6 +77,16 @@ function AddAudio(props) {
                     </label>
                 </div>
                 <div>
+                    <input
+                        type="file"
+                        id='customFile'
+                        onChange={onChange}
+                    />
+                    {/* <label htmlFor='customFile'>
+                        {fileName}
+                    </label> */}
+                </div>
+                {/* <div>
                     <label htmlFor="link">
                         Link:
                         <input
@@ -63,7 +97,7 @@ function AddAudio(props) {
                             onChange={(event) => setLink(event.target.value)}
                         />
                     </label>
-                </div>
+                </div> */}
                 {/* <div>
                     <label htmlFor="general">
                         General Use:
