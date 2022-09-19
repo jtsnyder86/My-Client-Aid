@@ -48,10 +48,10 @@ function AddAudio(props) {
             .then((res) => {
                 alert("File Upload success");
                 const { fileName, filePath } = res.data;
-                setUploadedFile({ fileName, filePath });
+                // setUploadedFile({ fileName, filePath });
             })
             .catch((err) => {
-                // alert("File Upload Error", err)
+                alert("File Upload Error", err)
             });
 
         history.push('/admin')
