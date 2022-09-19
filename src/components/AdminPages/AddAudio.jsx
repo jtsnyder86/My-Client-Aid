@@ -64,7 +64,7 @@ function AddAudio(props) {
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="general">
                         General Use:
                         <select
@@ -78,7 +78,7 @@ function AddAudio(props) {
                             <option value='false'>No</option>
                         </select>
                     </label>
-                </div>
+                </div> */}
                 <div>
                     <input className="btn" type="submit" name="submit" value="Submit" />
                 </div>
