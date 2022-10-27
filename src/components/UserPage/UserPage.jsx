@@ -14,6 +14,8 @@ function UserPage() {
       {/* <LogOutButton className="btn" /> */}
       {user.approved && 
       <>
+      {/* Need to remove general audio button and fix app so audio is assigned to the client user by
+      admin user; no general audio options to be incorporated*/}
       <GeneralAudioButton className="btn" />
       <MyAudioButton className="btn" />
       </>}
